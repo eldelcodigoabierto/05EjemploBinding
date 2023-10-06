@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">05EjemploBinding</string>
+    <string name="etiqueta">INFORMACIÓN ALUMNO</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="grupoa">GRUPO A</string>
+    <string name="grupob">GRUPO B</string>
+    <string name="grupoc">GRUPO C</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="crear">CREAR ALUMNO</string>
+    <string-array name="spciclos">
+        <item>Seleccion de un ciclo</item>
+        <item>SMR</item>
+        <item>DAM</item>
+        <item>3d</item>
+        <item>Marketing</item>
+     </string-array>
+
+</resources>
