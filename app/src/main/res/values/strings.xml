@@ -8,12 +8,14 @@
     <string name="grupoc">GRUPO C</string>
     <string name="cancelar">CANCELAR</string>
     <string name="crear">CREAR ALUMNO</string>
+    <string name="editar">EDITAR</string>
+    <string name="eliminar">ELIMINAR</string>
     <string-array name="spciclos">
         <item>Seleccion de un ciclo</item>
         <item>SMR</item>
         <item>DAM</item>
         <item>3d</item>
         <item>Marketing</item>
-     </string-array>
+    </string-array>
 
 </resources>

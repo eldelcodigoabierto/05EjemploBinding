@@ -25,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private ActivityResultLauncher<Intent> launcherAlumno;
+    private ActivityResultLauncher<Intent> editAlumnoLauncher;
+
     private ArrayList<Alumno> listaAlumnos;
+
+    private int posicion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
+
+        listaAlumnos = new ArrayList<>();
         inicializarlauncher();
 
 
@@ -63,6 +69,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+        }
+        );
+        editAlumnoLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+               //que ocurrira cuando se edita un alumno
+                if (result.getResultCode() == RESULT_OK){
+                    if(result.getData() != null && result.getData().getExtras() != null){
+                        //pulsaron editar
+                        Alumno alumno = (Alumno) result.getData().getExtras().getSerializable("ALUMNO");
+                        listaAlumnos.set(posicion, alumno);
+                        mostrarAlumnos();
+                    }else{
+                        //pulsaron borrar
+                        listaAlumnos.remove(posicion);
+                        mostrarAlumnos();
+                    }
+                }
+            }
         });
     }
 
@@ -83,6 +108,23 @@ public class MainActivity extends AppCompatActivity {
             txtApellidos.setText(alumno.getApellidos());
             txtCiclo.setText(alumno.getCiclo());
             txtGrupo.setText(String.valueOf(alumno.getGrupo()));
+
+  alumnoView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //enviar el alumno
+                    Intent intent = new Intent(MainActivity.this, EditAlumnoActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ALUMNO", alumno);
+                    intent.putExtras(bundle);
+
+                    posicion = listaAlumnos.indexOf(alumno);
+
+                    //recibir el alumno modificado o la orden de eliminar
+                    editAlumnoLauncher.launch(intent);
+
+                }
+            });
 
             binding.contentMain.contenedorMain.addView(alumnoView);
         }

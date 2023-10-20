@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "alex.roig.a05ejemplobinding"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "alex.roig.a05ejemplobinding"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
